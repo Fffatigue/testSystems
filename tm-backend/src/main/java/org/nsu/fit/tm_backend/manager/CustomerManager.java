@@ -1,5 +1,6 @@
 package org.nsu.fit.tm_backend.manager;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.nsu.fit.tm_backend.database.IDBService;
 import org.nsu.fit.tm_backend.database.data.ContactPojo;
@@ -42,6 +43,14 @@ public class CustomerManager extends ParentManager {
             throw new IllegalArgumentException("Password is very easy.");
         }
 
+        if (lookupCustomer(customer.login) != null) {
+            throw new IllegalArgumentException("Login already exists.");
+        }
+
+        char firstChar = customer.pass.charAt(0);
+        if (!Character.isAlphabetic(firstChar) || !Character.isUpperCase(firstChar)) {
+            throw new IllegalArgumentException("Pass must starts with uppercase character.");
+        }
         // Лабораторная 2: добавить код который бы проверял, что нет customer'а c таким же login (email'ом).
         // Попробовать добавить другие ограничения, посмотреть как быстро растет кодовая база тестов.
 
