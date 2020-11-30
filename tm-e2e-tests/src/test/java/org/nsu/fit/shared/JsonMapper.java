@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.List;
 
 public class JsonMapper {
     private static final ObjectMapper m = new ObjectMapper();
@@ -14,6 +15,14 @@ public class JsonMapper {
     public static <T> T fromJson(String jsonAsString, Class<T> pojoClass) {
         try {
             return m.readValue(jsonAsString, pojoClass);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static <T> List<T> fromJsonList(String jsonAsString, Class<T> pojoClass) {
+        try {
+            return m.readValue(jsonAsString, m.getTypeFactory().constructCollectionType(List.class, pojoClass));
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
