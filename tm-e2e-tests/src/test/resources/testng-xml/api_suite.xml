@@ -5,4 +5,20 @@
             <class name="org.nsu.fit.tests.api.AuthTest" />
         </classes>
     </test>
+    <test name="PlanTest">
+        <classes>
+            <class name="org.nsu.fit.tests.api.CreatePlanTest" />
+            <class name="org.nsu.fit.tests.api.DeletePlanTest" />
+        </classes>
+    </test>
+    <test name="SubscriptionTest">
+        <classes>
+            <class name="org.nsu.fit.tests.api.CreateSubscriptionTest" />
+        </classes>
+    </test>
+    <test name="BalanceTest">
+        <classes>
+            <class name="org.nsu.fit.tests.api.TopUpBalanceTest" />
+        </classes>
+    </test>
 </suite>
