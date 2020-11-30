@@ -53,7 +53,7 @@ class CustomerManagerTest {
         createCustomerInput = new CustomerPojo();
         createCustomerInput.firstName = "John";
         createCustomerInput.lastName = "Wick";
-        createCustomerInput.login = "john_wick@gmail.com";
+        createCustomerInput.login = "john_wick@example.com";
         createCustomerInput.pass = "Baba_Jaga";
         createCustomerInput.balance = 0;
 
@@ -61,7 +61,7 @@ class CustomerManagerTest {
         createCustomerOutput.id = UUID.randomUUID();
         createCustomerOutput.firstName = "John";
         createCustomerOutput.lastName = "Wick";
-        createCustomerOutput.login = "john_wick@gmail.com";
+        createCustomerOutput.login = "john_wick@example.com";
         createCustomerOutput.pass = "Baba_Jaga";
         createCustomerOutput.balance = 0;
 
@@ -103,7 +103,7 @@ class CustomerManagerTest {
         createCustomerInput = new CustomerPojo();
         createCustomerInput.firstName = "John";
         createCustomerInput.lastName = "Wick";
-        createCustomerInput.login = "john_wick@gmail.com";
+        createCustomerInput.login = "john_wick@example.com";
         createCustomerInput.pass = "123qwe";
         createCustomerInput.balance = 0;
 
