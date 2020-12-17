@@ -12,6 +12,7 @@ import java.io.Closeable;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Please read: https://github.com/SeleniumHQ/selenium/wiki/Grid2
@@ -44,7 +45,7 @@ public class Browser implements Closeable {
                 chromeOptions.setHeadless(Boolean.parseBoolean(System.getProperty("headless")));
                 webDriver = new ChromeDriver(chromeOptions);
             } else {
-                File f = new File("/usr/bin/chromedriver");
+                File f = new File("/Users/a-chmil/Downloads/chromedriver");
                 if (f.exists()) {
                     chromeOptions.addArguments("single-process");
                     chromeOptions.addArguments("headless");
@@ -88,13 +89,27 @@ public class Browser implements Closeable {
 
     public Browser typeText(By element, String text) {
         makeScreenshot();
-        webDriver.findElement(element).sendKeys(text);
+        webDriver.findElements(element).forEach(e -> e.sendKeys(text));
         return this;
     }
 
     public String getValue(By element) {
         makeScreenshot();
+
         return webDriver.findElement(element).getAttribute("value");
+    }
+
+    public String getText(By element) {
+        makeScreenshot();
+
+        return webDriver.findElement(element).getText();
+    }
+
+    public List<String> getValues(By element) {
+        makeScreenshot();
+        return webDriver.findElements(element).stream()
+                .map(e -> e.getAttribute("value"))
+                .collect(Collectors.toList());
     }
 
     public boolean isElementPresent(By element) {
